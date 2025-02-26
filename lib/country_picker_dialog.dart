@@ -28,6 +28,8 @@ class PickerDialogStyle {
 
   final double? width;
 
+  final double? borderRadius;
+
   PickerDialogStyle({
     this.backgroundColor,
     this.countryCodeStyle,
@@ -40,6 +42,7 @@ class PickerDialogStyle {
     this.searchFieldInputDecoration,
     this.searchFieldPadding,
     this.width,
+    this.borderRadius,
   });
 }
 
@@ -90,7 +93,7 @@ class _CountryPickerDialogState extends State<CountryPickerDialog> {
     const defaultVerticalPadding = 24.0;
     return Dialog(
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(4),
+        borderRadius: BorderRadius.circular(widget.style?.borderRadius ?? 10.0),
       ),
       insetPadding: EdgeInsets.symmetric(
           vertical: defaultVerticalPadding,
