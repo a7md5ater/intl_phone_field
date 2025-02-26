@@ -30,6 +30,8 @@ class PickerDialogStyle {
 
   final double? borderRadius;
 
+  final TextStyle? searchFieldtextStyle;
+
   PickerDialogStyle({
     this.backgroundColor,
     this.countryCodeStyle,
@@ -43,6 +45,7 @@ class PickerDialogStyle {
     this.searchFieldPadding,
     this.width,
     this.borderRadius,
+    this.searchFieldtextStyle,
   });
 }
 
@@ -110,6 +113,7 @@ class _CountryPickerDialogState extends State<CountryPickerDialog> {
               child: TextField(
                 cursorHeight: widget.style?.searchFieldCursorHeight,
                 cursorColor: widget.style?.searchFieldCursorColor,
+                style: widget.style?.searchFieldtextStyle,
                 decoration: widget.style?.searchFieldInputDecoration ??
                     InputDecoration(
                       suffixIcon: const Icon(Icons.search),
