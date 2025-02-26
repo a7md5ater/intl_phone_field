@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl_phone_field/country_picker_dialog.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 
 void main() {
@@ -21,7 +22,7 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Phone Field Example'),
+          title: const Text('Phone Field Example'),
         ),
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -30,8 +31,8 @@ class _MyAppState extends State<MyApp> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                SizedBox(height: 30),
-                TextField(
+                const SizedBox(height: 30),
+                const TextField(
                   decoration: InputDecoration(
                     labelText: 'Name',
                     border: OutlineInputBorder(
@@ -39,10 +40,10 @@ class _MyAppState extends State<MyApp> {
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
-                TextField(
+                const TextField(
                   decoration: InputDecoration(
                     labelText: 'Email',
                     border: OutlineInputBorder(
@@ -50,17 +51,41 @@ class _MyAppState extends State<MyApp> {
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 IntlPhoneField(
                   focusNode: focusNode,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     labelText: 'Phone Number',
                     border: OutlineInputBorder(
                       borderSide: BorderSide(),
                     ),
                   ),
+                  pickerDialogStyle: PickerDialogStyle(
+                      searchFieldPadding: const EdgeInsets.symmetric(
+                        vertical: 12,
+                        horizontal: 10,
+                      ),
+                      searchFieldCursorHeight: 18,
+                      searchFieldCursorColor: Colors.black,
+                      searchFieldInputDecoration: InputDecoration(
+                        contentPadding: const EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+
+                        suffixIcon: Icon(Icons.search),
+                        hintText: "Search",
+                        // Use enabledBorder for the normal state
+                        enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.black), borderRadius: BorderRadius.circular(10)),
+                        // Use focusedBorder for when the field is selected/focused
+                        focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.black), borderRadius: BorderRadius.circular(10)),
+                        // You can also set the border for when there's an error
+                        errorBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.red), borderRadius: BorderRadius.circular(10)),
+                        // The border property alone isn't sufficient to control all states
+                        // border: OutlineInputBorder(borderSide: BorderSide(color: Colors.black)),
+                      )),
                   languageCode: "en",
                   onChanged: (phone) {
                     print(phone.completeNumber);
@@ -69,11 +94,11 @@ class _MyAppState extends State<MyApp> {
                     print('Country changed to: ' + country.name);
                   },
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 MaterialButton(
-                  child: Text('Submit'),
+                  child: const Text('Submit'),
                   color: Theme.of(context).primaryColor,
                   textColor: Colors.white,
                   onPressed: () {

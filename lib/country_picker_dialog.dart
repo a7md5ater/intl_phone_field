@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:intl_phone_field/countries.dart';
@@ -18,6 +20,8 @@ class PickerDialogStyle {
 
   final Color? searchFieldCursorColor;
 
+  final double? searchFieldCursorHeight;
+
   final InputDecoration? searchFieldInputDecoration;
 
   final EdgeInsets? searchFieldPadding;
@@ -32,6 +36,7 @@ class PickerDialogStyle {
     this.listTilePadding,
     this.padding,
     this.searchFieldCursorColor,
+    this.searchFieldCursorHeight,
     this.searchFieldInputDecoration,
     this.searchFieldPadding,
     this.width,
@@ -84,6 +89,9 @@ class _CountryPickerDialogState extends State<CountryPickerDialog> {
     const defaultHorizontalPadding = 40.0;
     const defaultVerticalPadding = 24.0;
     return Dialog(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(4),
+      ),
       insetPadding: EdgeInsets.symmetric(
           vertical: defaultVerticalPadding,
           horizontal: mediaWidth > (width + defaultHorizontalPadding * 2)
@@ -97,10 +105,13 @@ class _CountryPickerDialogState extends State<CountryPickerDialog> {
             Padding(
               padding: widget.style?.searchFieldPadding ?? const EdgeInsets.all(0),
               child: TextField(
+                cursorHeight: widget.style?.searchFieldCursorHeight,
                 cursorColor: widget.style?.searchFieldCursorColor,
                 decoration: widget.style?.searchFieldInputDecoration ??
                     InputDecoration(
                       suffixIcon: const Icon(Icons.search),
+                      // hintText: widget.searchText,
+
                       labelText: widget.searchText,
                     ),
                 onChanged: (value) {
